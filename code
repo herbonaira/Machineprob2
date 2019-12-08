@@ -1,0 +1,32 @@
+function mp2final
+%input variables
+m = input('px1= ');,a = input('py1= ');, t = input('px2= ');, r = input('py2= ');, i = input('px3= ');, x = input('py3= ');
+fprintf('Given set of points: (%.f,%.f) \n',m,a,t,r,i,x)
+%
+L = m^2 + a^2;
+A = t^2 + r^2;
+B = i^2 + x^2;
+%set of major and minor diagonal determinants
+s1 = [m a 1; t r 1; i x 1];
+s2 = [L a 1; A r 1; B x 1];
+s3 = [L m 1; A t 1; B i 1];
+s4 = [L m a; A t r; B i x];
+d1 = det(s1);
+d2 = det(s2);
+d3 = det(s3);
+d4 = det(s4);
+%formula to locate the center of the circle using determinants
+x = 0.5 * (d2/d1);
+y = -0.5 * (d3/d1);
+
+fprintf('the center of the circle is located at the coordinates:  (%.2f,%.2f) \n',x,y);
+%to get the radius of the circle
+r2 = x^2 + y^2 + (d4/d1);
+rad = sqrt(r2);
+fprintf('The radius of the circle: (%.2f) \n',rad)
+D = -2 * x;
+E = -2 * y;
+F = -(rad^2 - x^2 - y^2);
+vecDEF = [D E F];
+vecDEF
+end
